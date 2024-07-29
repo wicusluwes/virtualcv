@@ -17,6 +17,7 @@ body {
 .container {
   display: flex;
   width: 90vw;
+  flex-wrap: wrap; /* Added to allow wrapping on smaller screens */
 }
 
 .panel {
@@ -30,13 +31,12 @@ body {
   flex: 0.5;
   margin: 10px;
   position: relative;
-  -webkit-transition: all 700ms ease-in;
+  transition: all 700ms ease-in;
 }
 
 .panel h3 {
   font-size: 24px;
   text-indent: 40px;
-  /*position: absolute;*/
   bottom: 20px;
   left: 20px;
   margin: 0;
@@ -52,8 +52,6 @@ body {
   padding-left: 40px;
 }
 
-
-
 .panel.active {
   flex: 5;
 }
@@ -64,12 +62,36 @@ body {
 }
 
 @media (max-width: 480px) {
-  .container {
-    width: 100vw;
+  body {
+    flex-direction: column;
+    height: auto;
+    overflow: auto;
   }
 
-  .panel:nth-of-type(4),
-  .panel:nth-of-type(5) {
-    display: none;
+  .container {
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .panel {
+    width: 90%;
+    height: auto;
+    flex: none;
+  }
+
+  .panel h3 {
+    text-indent: 20px;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .panel p {
+    padding-left: 20px;
+  }
+
+  .panel.active {
+    flex: none;
+    width: 100%;
   }
 }
